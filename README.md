@@ -10,3 +10,74 @@ The general format:
 - **MAJOR** version when you make incompatible API changes
 - **MINOR** version when you add functionality in a backward compatible manner
 - **PATCH** version when you make backward compatible bug fixes
+
+## Install the Terraform CLI
+### Considerations with the Terraform CLI changes
+The Terraform CLI installation instructions have changed due to gpg keyring changes. So we needed to refer to the latest CLI instructions via Terraform Documentation and change the scripting for install.
+
+The bash script is located here: [./bin/install_terraform_cli](./bin/install_terraform_cli)
+
+[Install Terraform CLI](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+
+### Refactoring into Bash Scripts
+
+While fixing the Terraform CLI gpgp deprecation issues we noticed that the bash scripts were a considerable amount more code. So we decied to create a bash script to install the Terraform CLI.
+
+Benefits:
+- This will keep the Gitpod Task ([.gitpod.yml](.gitpod.yml)) file tidy
+- Will allow us an easier to debug
+
+### Considerations for Linux Distribution
+This project is built against Ubuntu. Please consider checking your Linux Distribution and change accordingly to your distributino needs
+[How to Check OS Version on Linux](https://linuxize.com/post/how-to-check-linux-version/)
+
+Example of checking OS version:
+```
+lsb_release -a
+
+Distributor ID: Ubuntu
+Description:    Ubuntu 22.04.3 LTS
+Release:        22.04
+Codename:       jammy
+```
+
+#### Shebang
+A Shebang (pronounced Sha-bang) tells the bash script what program will interpret the script.
+
+ChatGPT will recommended this format for bash: `#!/usr/bin/env bash`
+
+Benefits:
+- For portability for different OS distributions
+- Will search user's PATH for bash executable
+
+[Documentation](https://en.wikipedia.org/wiki/Shebang_(Unix))
+
+### Execution Considerations
+When executing bash script we can use the `./` shorthand notation to execute the bash script
+
+e.g. `./bin/install_terraform_cli`
+
+If using script in `.gitpod.yml` we must point the script to a program that will interpret it.
+
+e.g. `source ./bin/install_terraform_cli`
+
+#### Linux Permissions Considerations
+In order to execute our bash scripts, we must change the permissions to allow for that
+
+```sh
+chmod u+x ./bin/install_terraform_cli
+```
+
+alternatively:
+```sh
+chmod 744 ./bin/install_terraform_cli
+```
+
+> Note: AWS won't let you use SSH keys unless you make them read only
+
+### Gitpod Lifecycle (Before, Init, Command)
+We need to be careful when using the Init because it will not rerun if we restart an existing workspace.
+
+https://www.gitpod.io/docs/configure/workspaces/tasks
+
+https://en.wikipedia.org/wiki/Chmod
