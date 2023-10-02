@@ -146,3 +146,53 @@ We'll need to generated AWS CLI from IAM user in order to use AWS CLI
 [Installing AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 
 [Env vars](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
+
+## Terraform Basics
+
+### Terraform Registry
+Terraform sources their providers and modules from the Terraform registry which is located at [https://registry.terraform.io/](https://registry.terraform.io/).
+
+- **Providers** are interfaces to APIs that will allow you to create resources in Terraform
+- **Module** are a way to make a large amount of Terraform code module, shareable, portable.
+
+### Terraform Console
+We can see a list of all Terraform commands by typing `terraform`.
+
+### Terraform Init
+At the start of a new Terraform project we will run `terraform init` to donwload binaries for the Terraform providers that will be used for the project.
+
+[An example of a Terraform provider](https://registry.terraform.io/providers/hashicorp/random/latest)
+
+### Terraform Plan
+> `terraform plan` 
+This will generate a changeset about the state of our infrastructure and what will be changed.
+
+We can output this changeset i.e. "plan" ot be passed to apply. But often, output can be ignored.
+
+### Terraform Apply
+> `terraform apply`
+
+This will run a plan, passing in changeset to be execute by Terraform. Apply should prompt yes or no.
+
+A plan can be autoapproved with the following command: 
+> `terraform apply --auto-approve`
+
+## Terraform Lock Files
+`.terraform.lock.hcl` contains the locked versioning for the providers or modules that should be used with this project.
+
+The Terraform Lock file should be commited to Version Control System.
+
+### Terraform State Files
+`.terraform.tfstate` contains information about the current state of your infrastructure.
+
+This file contains sensitive data and **should not be committed* to your VCS.
+Losing this file means losing known state of infrastructure.
+
+`.terraform.tfstate.backup` is the previous state of the infrastructure.
+https://registry.terraform.io/providers/hashicorp/random/latest/docs
+
+### Terraform Directory
+The `.terraform` directory contains binaries of Terraform providers.
+
+### Root Terraform Module
+The output section contains information that will be listed off in running [terraform apply](#terraform-apply)
