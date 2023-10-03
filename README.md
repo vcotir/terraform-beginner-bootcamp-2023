@@ -205,3 +205,6 @@ The `.terraform` directory contains binaries of Terraform providers.
 ### Root Terraform Module
 The output section contains information that will be listed off in running [terraform apply](#terraform-apply)
 
+### Using Terraform Random Provider to Create S3 Bucket names
+When using this to create S3 buckets, you must make sure to follow [Bucket Naming Rules](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html). The `lower = true; upper = false` properties for the provider was used to pass the bucket naming rules.
+
