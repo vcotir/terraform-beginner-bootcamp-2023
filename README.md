@@ -177,7 +177,15 @@ This will run a plan, passing in changeset to be execute by Terraform. Apply sho
 A plan can be autoapproved with the following command: 
 > `terraform apply --auto-approve`
 
-## Terraform Lock Files
+#### Terraform Destroy
+`terraform destroy`
+This will destroy resources.
+
+Can also use auto approve flag to speed up deprovisioning of resources.
+
+`terraform destroy --auto-approve`
+
+#### Terraform Lock Files
 `.terraform.lock.hcl` contains the locked versioning for the providers or modules that should be used with this project.
 
 The Terraform Lock file should be commited to Version Control System.
@@ -196,3 +204,4 @@ The `.terraform` directory contains binaries of Terraform providers.
 
 ### Root Terraform Module
 The output section contains information that will be listed off in running [terraform apply](#terraform-apply)
+
