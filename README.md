@@ -208,3 +208,28 @@ The output section contains information that will be listed off in running [terr
 ### Using Terraform Random Provider to Create S3 Bucket names
 When using this to create S3 buckets, you must make sure to follow [Bucket Naming Rules](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html). The `lower = true; upper = false` properties for the provider was used to pass the bucket naming rules.
 
+## Issues with Terraform Cloud Login and Gitpod Workspace
+
+When attempting to run `terraform login`, it will launch a WYSIWYG view to generate a token. However, it does not work as expected in Gitpod VSCode browser.
+
+The workaround is to manually generate a token using the link here: 
+
+https://app.terraform.io/app/settings/tokens?source=terraform-login
+
+Then create open the file manually here:
+
+```sh
+touch /home/gitpod/.terraform.d/credentials.tfrc.json
+open /home/gitpod/.terraform.d/credentials.tfrc.json
+```
+
+Provide the following code in the `credentials.tfrc.json` file:
+```json
+{
+  "credentials": {
+    "app.terraform.io": {
+      "token": "YOUR_API_TOKEN"
+    }
+  }
+}
+```
