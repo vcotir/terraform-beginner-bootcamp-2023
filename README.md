@@ -233,3 +233,6 @@ Provide the following code in the `credentials.tfrc.json` file:
   }
 }
 ```
+
+We have automated the process using a workaround with the following bash script [bin/generate_tfrc_credentials](bin/generate_tfrc_credentials)
+
