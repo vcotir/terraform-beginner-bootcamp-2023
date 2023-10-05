@@ -12,6 +12,28 @@ PROJECT_ROOT
 |-- terraform.tfvars   # data of variables we want to load into Terraform project
 |-- README.md          # required for root modules
 ```
+## Fixing Tags
+[How to Delete Local and Remote Tags on Git](https://devconnected.com/how-to-delete-local-and-remote-tags-on-git/)
+
+Delete a tag on local
+```sh
+$ git tag -d <tag_name>
+```
+
+Remotely delete a tag
+```sh
+git push --delete origin tagname
+```
+
+Checkout the commit you'd like to retag. Grab the Sha hash from your github history.
+
+```sh
+git checkout <SHA>
+git tag M.N.P
+git push --tags
+git checkout main
+```
+
 
 ## Terraform Variables
 
