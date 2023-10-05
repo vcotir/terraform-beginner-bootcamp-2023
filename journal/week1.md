@@ -221,3 +221,16 @@ In configuring the aws_cloudfront_distribution resource, origin.domain_name shou
 
 [Cloudfront Distribution Documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution#example-usage
 )
+
+## Changing the Lifecycle of Resources
+[Meta Arguments Lifecycle](https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle)
+
+## Terraform Data
+Plain data values such as Local Values and Input Variables don't have any side-effects to plan against and so they aren't valid in replace_triggered_by. You can use terraform_data's behavior of planning an action each time input changes to indirectly use a plain value to trigger replacement.
+
+```tf
+lifecycle {
+    replace_triggered_by = [var.content_version]
+  }
+```
+[Terraform Data](https://developer.hashicorp.com/terraform/language/resources/terraform-data)
