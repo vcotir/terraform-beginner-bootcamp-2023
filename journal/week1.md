@@ -183,3 +183,41 @@ resource "aws_s3_object" "index_html" {
   etag = filemd5(var.index_html_filepath)
 }
 ```
+## Terraform Locals
+
+Locals allow us to define local variables.
+
+It can be useful to transform data into another format and have them referenced as a variable within a `.tf` file.
+
+```tf
+locals {
+    s3_origin_id = "MyS3Origin"
+}
+```
+
+[Local Values](https://spacelift.io/blog/terraform-locals)
+
+
+## Terraform Data Sources
+This allows us to source data from cloud resources.
+
+This is useful when we want to reference cloud resources without importing them.
+```tf
+data "aws_caller_identity" "current" {}
+```
+
+## Working with JSON
+
+We use jsonencode to create the json policy inline in the HCL.
+```tf
+> jsonencode({"hello"="world"})
+{"hello":"world"}
+```
+
+[jsonencode](https://developer.hashicorp.com/terraform/language/functions/jsonencode)
+
+## Setting Cloudfront Distribution Origin 
+In configuring the aws_cloudfront_distribution resource, origin.domain_name should be set to the `bucket_regional_domain_name` of the bucket. Otherwise, redirection will not work properly.
+
+[Cloudfront Distribution Documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution#example-usage
+)
