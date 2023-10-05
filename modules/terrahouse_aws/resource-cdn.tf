@@ -89,3 +89,18 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     cloudfront_default_certificate = true
   }
 }
+
+resource "terraform_data" "invalidate_cache" {
+  triggers_replace = terraform_data.content_version.output
+
+  // runs on local machine that TF commands are excuted on
+    // could also be placed inside a different resource, but we want to allow this to happen on trigger
+  provisioner "local-exec" {
+    # https://developer.hashicorp.com/terraform/language/expressions/strings
+    command = <<COMMAND
+aws cloudfront create-invalidation \
+  --distribution-id ${aws_cloudfront_distribution.s3_distribution.id} \
+  --paths "/*"
+    COMMAND
+  }
+}
