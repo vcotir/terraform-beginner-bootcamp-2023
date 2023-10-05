@@ -104,3 +104,60 @@ module "terrahouse_aws" {
 
 ### Modules Sources
 [Modules Sources](https://developer.hashicorp.com/terraform/language/modules/sources)
+
+## Considerations when using ChatGPT to write Terraform
+
+LLMs may not be trained on latest documentation or information about Terraform.
+
+It may likely produce older examples that may be deprecated.
+
+Terraform want you to use provisioners.
+
+## Working with Files in Terraform
+
+### Fileexists function
+This is a terraform built-in function to check for the existence of a file
+
+```tf
+condition     = fileexists(var.error_html_filepath)
+```
+
+### FileMD5
+When pushing files to S3 as objects, on a second terraform apply the file data won't be checked and thus the file will not be reuploaded. We must push an etag to S3 objects so that it can be checked by Terraform for data changes. 
+
+```tf
+resource "aws_s3_object" "index_html" {
+  bucket = aws_s3_bucket.website_bucket.bucket
+  key    = "index.html"
+  // Data isn't checked!
+  source = var.index_html_filepath
+
+  # The filemd5() function is available in Terraform 0.11.12 and later
+  # For Terraform 0.11.11 and earlier, use the md5() function and the file() function:
+  # etag = "${md5(file("path/to/file"))}"
+  etag = filemd5(var.index_html_filepath)
+}
+```
+[Documentation for fileMD5 hashing function - a built-in terraform function](https://developer.hashicorp.com/terraform/language/functions/filemd5)
+
+### Path Variable
+
+In Terraform there is a special variable called `path` that allows us to reference local paths:
+- path.module = get the path for the current module
+- path.root = get the path for the root module of the configuration
+
+[Special Path Variable](https://developer.hashicorp.com/terraform/language/expressions/references#filesystem-and-workspace-info)
+
+```tf
+resource "aws_s3_object" "index_html" {
+  bucket = aws_s3_bucket.website_bucket.bucket
+  key    = "index.html"
+  // Data isn't checked!
+  source = var.index_html_filepath
+
+  # The filemd5() function is available in Terraform 0.11.12 and later
+  # For Terraform 0.11.11 and earlier, use the md5() function and the file() function:
+  # etag = "${md5(file("path/to/file"))}"
+  etag = filemd5(var.index_html_filepath)
+}
+```
