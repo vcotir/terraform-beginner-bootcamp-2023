@@ -65,4 +65,42 @@ If we run Terraform plan, it will attempt to put the infrastructure back into th
 
 [Standard Structure of a Terraform Project](https://developer.hashicorp.com/terraform/language/modules/develop/structure)
 
+## Fix using Terraform Refresh
+```sh
+terraform apply -refresh-only --auto-approve
+```
 
+## Terraform Modules
+Using the source, we can import the module from various places e.g.
+- locally
+- Github
+- Terraform Registry
+
+```tf
+module "terrahouse_aws" {
+  source = "./modules/terrahouse_aws"
+  user_uuid = var.user_uuid 
+  bucket_name = var.bucket_name
+}
+```
+
+## Terraform Modules
+
+### Terraform Module Structure
+It is recommended to place modules in the `modules` directory when locally development modules. But they can be named whatever you like
+
+### Passing Input Variables
+
+We can pass input variables to our module.
+The module has to declare the Terraform variables in its own variables.tf
+
+```tf
+module "terrahouse_aws" {
+  source = "./modules/terrahouse_aws"
+  user_uuid = var.user_uuid 
+  bucket_name = var.bucket_name
+}
+```
+
+### Modules Sources
+[Modules Sources](https://developer.hashicorp.com/terraform/language/modules/sources)

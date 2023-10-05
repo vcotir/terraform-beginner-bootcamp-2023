@@ -6,7 +6,6 @@ terraform {
   #     name = "terra-house-1"
   #   }
   # }
-  
   required_providers {
     aws = {
       source = "hashicorp/aws"
@@ -15,6 +14,10 @@ terraform {
   }
 }
 
-provider "aws" {}
-
-provider "random" {}
+resource "aws_s3_bucket" "website_bucket" {
+  # https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html
+  bucket = var.bucket_name
+  tags = {
+    UserUuid = var.user_uuid
+  }
+}
