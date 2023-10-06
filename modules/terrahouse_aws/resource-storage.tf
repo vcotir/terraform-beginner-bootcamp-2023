@@ -24,26 +24,26 @@ resource "aws_s3_bucket_website_configuration" "website_configuration" {
 resource "aws_s3_object" "index_html" {
   bucket = aws_s3_bucket.website_bucket.bucket
   key    = "index.html"
-  source = "${path.root}${var.index_html_filepath}"
+  source = "${path.cwd}${var.index_html_filepath}"
   content_type = "text/html"
 
   # The filemd5() function is available in Terraform 0.11.12 and later
   # For Terraform 0.11.11 and earlier, use the md5() function and the file() function:
   # etag = "${md5(file("path/to/file"))}"
-  etag = filemd5("${path.root}${var.index_html_filepath}")
+  etag = filemd5("${path.cwd}${var.index_html_filepath}")
 }
 
 resource "aws_s3_object" "error_html" {
   bucket = aws_s3_bucket.website_bucket.bucket
   key    = "error.html"
   // Data isn't checked!
-  source = "${path.root}${var.error_html_filepath}"
+  source = "${path.cwd}${var.error_html_filepath}"
   content_type = "text/html"
 
   # The filemd5() function is available in Terraform 0.11.12 and later
   # For Terraform 0.11.11 and earlier, use the md5() function and the file() function:
   # etag = "${md5(file("path/to/file"))}"
-  etag = filemd5("${path.root}${var.error_html_filepath}")
+  etag = filemd5("${path.cwd}${var.error_html_filepath}")
 }
 
 resource "aws_s3_bucket_policy" "bucket_policy" {
