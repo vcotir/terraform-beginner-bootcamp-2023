@@ -7,3 +7,7 @@ output "s3_website_endpoint" {
   description = "S3 Static Website Hosting endpoint"
   value = module.terrahouse_aws.website_endpoint
 }
+
+output "root_path" {
+  value = path.root
+}
