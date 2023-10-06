@@ -37,6 +37,19 @@ resource "aws_s3_object" "index_html" {
   }
 }
 
+resource "aws_s3_object" "upload_assets" {
+  for_each = fileset("${var.assets_path}", "*.{jpg,jpeg,png,gif}")
+  bucket = aws_s3_bucket.website_bucket.bucket
+  key    = "assets/${each.key}" # S3 object name
+  source = "${var.assets_path}/${each.key}"
+  etag = filemd5("${var.assets.path}${each.key}")
+
+  lifecycle {
+    replace_triggered_by = [terraform_data.content_version.output]
+    ignore_changes=[etag]
+  }
+}
+
 resource "aws_s3_object" "error_html" {
   bucket = aws_s3_bucket.website_bucket.bucket
   key    = "error.html"
@@ -80,3 +93,4 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
 resource "terraform_data" "content_version" {
   input = var.content_version
 }
+

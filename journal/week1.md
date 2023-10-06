@@ -283,4 +283,40 @@ resource "aws_instance" "web" {
 ```
 
 [Remote-exec](https://developer.hashicorp.com/terraform/language/resources/provisioners/remote-exec)
+## Creating Multiple Cloud Resources
 
+### For Each Expressions 
+For each allows us to enumerate over complex data types:
+
+This is mostly useful when you are creating multiple of a cloud resource and you want to reduce amount of repetitive Terraform code.tf
+
+```tf
+resource "azurerm_resource_group" "rg" {
+  for_each = {
+    a_group = "eastus"
+    another_group = "westus2"
+  }
+  name     = each.key
+  location = each.value
+}
+```
+
+[For Each Argument](https://developer.hashicorp.com/terraform/language/meta-arguments/for_each)
+
+### Complex Types
+* Collection types (similar values)
+  * List, Map, Set
+* Structural types (groups potentially dissimilar values)
+  * Tuple, Object
+
+### Fileset Function
+The `fileset` function allows enumeration over a set of regular file names.
+
+```tf
+> fileset(path.module, "files/*.txt")
+[
+  "files/hello.txt",
+  "files/world.txt",
+]
+```
+[Fileset function](https://developer.hashicorp.com/terraform/language/functions/fileset)
