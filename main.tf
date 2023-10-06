@@ -1,11 +1,12 @@
 terraform {
-  # cloud {
-  #   organization = "Personal-7f53d9f15d9d"
+  cloud {
+    organization = "Personal-7f53d9f15d9d"
 
-  #   workspaces {
-  #     name = "terra-house-1"
-  #   }
-  # }
+    // can rename this to change to any workspaces
+    workspaces {
+      name = "terraform-cloud"
+    }
+  }
 }
 
 module "terrahouse_aws" {
