@@ -35,6 +35,11 @@ You can create a web-server with a single command.
 
 https://sinatrarb.com/
 
+### Misc Packages
+* rake is like make
+* pry - breakpoints
+* activerecord - ORM for validations
+
 ## Terratowns Mock Server 
 
 ### Running the web server 
@@ -45,3 +50,9 @@ bundle exec ruby server.rb
 ```
 
 All code for our server is stored in [server.rb](../terratowns_mock_server/server.rb)
+
+## Terraform Log Levels
+
+Different log levels from running Terraform can be outputed.
+
+These can be altered via [env vars](https://developer.hashicorp.com/terraform/internals/debugging).
