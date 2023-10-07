@@ -31,9 +31,13 @@ func Provider() *schema.Provider {
 	var p *schema.Provider
 	p = &schema.Provider{
 		// Resources to pull in
-		ResourcesMap: map[string]*schema.Resource{},
+		ResourcesMap: map[string]*schema.Resource{
+
+		},
 		// Fields to be used
-		DataSourcesMap: map[string]*schema.Resource{},
+		DataSourcesMap: map[string]*schema.Resource{
+			
+		},
 		Schema: map[string]*schema.Schema{
 			"endpoint": {
 				Type: schema.TypeString,
