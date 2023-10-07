@@ -15,7 +15,7 @@ terraform {
 }
 
 provider "terratowns" {
-  endpoint = "http://localhost:4567"
+  endpoint = "http://localhost:4567/api"
   user_uuid="e328f4ab-b99f-421c-84c9-4ccea042c7d1" 
   token="9b49b3fb-b8e9-483c-b703-97ba88eef8e0"
 }
@@ -30,3 +30,12 @@ provider "terratowns" {
 #   assets_path = var.assets_path
 # }
 
+resource "terratowns_home" "home" {
+  name = "How to play Arcanum in 2023!!!"
+  description = <<DESCRIPTION
+Are you ready to embark on an enchanting journey through the steampunk world of Arcanum? As we step into the year 2023, it's the perfect time to dive into this timeless classic RPG. With its intricate storytelling, complex character interactions, and a world that seamlessly blends magic and technology, Arcanum offers an unforgettable gaming experience.
+DESCRIPTION
+  town = "gamers-grotto"
+  content_version = 1
+  domain_name = "2f3223f.cloudfront.net"
+}
