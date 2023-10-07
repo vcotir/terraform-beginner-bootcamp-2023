@@ -11,7 +11,7 @@ tasks:
       cd $PROJECT_ROOT
       cd terratowns_mock_server
       bundle install
-      bundle exec ruby server.rb 
+      bundle exec ruby server.rb  
   - name: aws-cli
     env:
       AWS_CLI_AUTO_PROMPT: on-partial
