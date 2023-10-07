@@ -28,23 +28,27 @@ provider "terratowns" {
   token = var.terratowns_access_token
 }
 
-module "home_arcanum_hosting" {
+module "home_devops_dungeon_hosting" {
   source = "./modules/terrahome_aws"
   user_uuid = var.teacherseat_user_uuid
-  public_path = var.arcanum.public_path
-  content_version = var.arcanum.content_version
+  public_path = var.devops_dungeon.public_path
+  content_version = var.devops_dungeon.content_version
 }
 
-resource "terratowns_home" "home_arcanum" {
-  name = "How to play Runescape in 2023!"
+resource "terratowns_home" "home_devops_dungeon" {
+  name = "AI Ramblings and Musings"
   description = <<DESCRIPTION
-Are you ready to embark on an epic adventure in a fantasy realm like no other? Welcome to RuneScape, a timeless MMORPG that has captivated millions of players around the world for decades.
-In RuneScape, you have the freedom to shape your destiny. Will you become a fearless warrior, a masterful mage, or a cunning rogue? With a vast open world to explore, countless quests to complete, and an ever-evolving storyline, the choices are yours.
+In our fast-paced world, Artificial Intelligence (AI) emerges as a beacon of hope, promising solutions that save time and empower individuals to regain control over their lives. AI's ability to process vast data, learn, and adapt empowers us in extraordinary ways.
+
+Imagine AI-driven healthcare diagnostics that swiftly detect diseases, potentially saving lives and reducing stress. Picture AI-driven personal assistants that efficiently manage tasks, allowing us to focus on what truly matters. With AI in education, tailored learning experiences put the reins of knowledge back in our hands.
+
+In industries, AI-driven automation enhances efficiency, reducing workloads and granting professionals more time for creativity and strategic pursuits. In transportation, AI optimizes routes, reducing congestion and giving us precious moments for leisure or productivity.
+
+By entrusting repetitive tasks to AI, we reclaim invaluable time and mental space. AI's predictive capabilities help us make informed decisions and anticipate challenges. Embracing AI means taking back control of our lives, where we have more time to dream, create, and savor the moments that truly matter.
 DESCRIPTION
-  domain_name = module.home_arcanum_hosting.domain_name
-  # domain_name = module.terrahouse_aws.cloudfront_url
+  domain_name = module.home_devops_dungeon_hosting.domain_name
   town = "gamers-grotto"
-  content_version = var.arcanum.content_version
+  content_version = var.devops_dungeon.content_version
 }
 
 module "home_payday_hosting" {

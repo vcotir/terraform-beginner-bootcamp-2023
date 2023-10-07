@@ -22,12 +22,12 @@ tasks:
       cd $PROJECT_ROOT
       source ./bin/set_tf_alias
       source ./bin/install_aws_cli
-  - name: http-server
+  - name: live-server
     before: | 
-      npm install -g http-server
+      npm install -g live-server
     command:
       cd $PROJECT_ROOT
-      http-server
+      live-server ./public/
 
 vscode:
   extensions:
