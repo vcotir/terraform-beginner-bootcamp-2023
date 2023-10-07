@@ -56,3 +56,17 @@ All code for our server is stored in [server.rb](../terratowns_mock_server/serve
 Different log levels from running Terraform can be outputed.
 
 These can be altered via [env vars](https://developer.hashicorp.com/terraform/internals/debugging).
+
+## Creating a custom Terraform Provider
+
+https://developer.hashicorp.com/terraform/tutorials/providers/provider-use
+
+## Go
+### Declaring and assigning in one command
+Use `value := "thing"`
+
+## CRUD
+
+Terraform Provider resources utilize CRUD (Create, Read, Update, Delete).
+
+https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
