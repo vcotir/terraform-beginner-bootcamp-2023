@@ -36,16 +36,14 @@ module "home_arcanum_hosting" {
 }
 
 resource "terratowns_home" "home_arcanum" {
-  name = "How to play Arcanum in 2023!"
+  name = "How to play Runescape in 2023!"
   description = <<DESCRIPTION
-Arcanum is a game from 2001 that shipped with alot of bugs.
-Modders have removed all the originals making this game really fun
-to play (despite that old look graphics). This is my guide that will
-show you how to play arcanum without spoiling the plot.
+Are you ready to embark on an epic adventure in a fantasy realm like no other? Welcome to RuneScape, a timeless MMORPG that has captivated millions of players around the world for decades.
+In RuneScape, you have the freedom to shape your destiny. Will you become a fearless warrior, a masterful mage, or a cunning rogue? With a vast open world to explore, countless quests to complete, and an ever-evolving storyline, the choices are yours.
 DESCRIPTION
   domain_name = module.home_arcanum_hosting.domain_name
   # domain_name = module.terrahouse_aws.cloudfront_url
-  town = "missingo"
+  town = "gamers-grotto"
   content_version = var.arcanum.content_version
 }
 
@@ -62,6 +60,6 @@ resource "terratowns_home" "home_payday" {
 Oops, ClifBars for the win actually!
 DESCRIPTION
   domain_name = module.home_payday_hosting.domain_name
-  town = "missingo"
+  town = "melomaniac-mansion"
   content_version = var.payday.content_version
 }
