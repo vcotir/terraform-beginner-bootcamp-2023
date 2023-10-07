@@ -35,7 +35,7 @@ class Home
     'cooker-cove',
     'missingo',
     'gamers-grotto',
-    'video-valley'
+    'video-valley',
     'the-nomad-pad'
   ]}
 
