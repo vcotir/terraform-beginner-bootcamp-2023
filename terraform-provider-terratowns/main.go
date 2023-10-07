@@ -1,9 +1,9 @@
-// the main package is a special package that serves as the entry point for your Go programs. 
-	// Unlike other packages in Go, the main package is the one that allows you to create executable programs.
-package main 
+// the main package is a special package that serves as the entry point for your Go programs.
+// Unlike other packages in Go, the main package is the one that allows you to create executable programs.
+package main
 
-// The fmt package in Go's standard library provides functions for formatted input and output operations, 
-	// including printing and reading data with format specifiers, string formatting, and error message formatting.
+// The fmt package in Go's standard library provides functions for formatted input and output operations,
+// including printing and reading data with format specifiers, string formatting, and error message formatting.
 import (
 	// "log"
 	"fmt"
@@ -14,16 +14,15 @@ import (
 	// "github.com/google/uuid"
 )
 
-func main () {
+func main() {
 	plugin.Serve(&plugin.ServeOpts{
 		ProviderFunc: Provider,
 	})
 	// Format.PrintLine
-		// Prints to standard output
-		fmt.Println("Hello, World!")
+	// Prints to standard output
+	fmt.Println("Hello, World!")
 
 }
-
 
 // Go lang has interfaces, not clases
 // In golang, titlecase function will get exported
@@ -31,28 +30,24 @@ func Provider() *schema.Provider {
 	var p *schema.Provider
 	p = &schema.Provider{
 		// Resources to pull in
-		ResourcesMap: map[string]*schema.Resource{
-
-		},
+		ResourcesMap: map[string]*schema.Resource{},
 		// Fields to be used
-		DataSourcesMap: map[string]*schema.Resource{
-			
-		},
+		DataSourcesMap: map[string]*schema.Resource{},
 		Schema: map[string]*schema.Schema{
 			"endpoint": {
-				Type: schema.TypeString,
-				Required: true,
+				Type:        schema.TypeString,
+				Required:    true,
 				Description: "The endpoint for the external service",
 			},
 			"token": {
-				Type: schema.TypeString,
-				Required: true,
-				Sensitive: true,
+				Type:        schema.TypeString,
+				Required:    true,
+				Sensitive:   true,
 				Description: "Bearer token for authorization",
 			},
 			"user_uuid": {
-				Type: schema.TypeString,
-				Required: true,
+				Type:        schema.TypeString,
+				Required:    true,
 				Description: "UUID for configuration",
 				// ValidateFunct: validateUUID,
 			},
@@ -60,8 +55,8 @@ func Provider() *schema.Provider {
 	}
 	// p.ConfigureContextFunc = providerConfigure(p)
 
-	// schema at provider level, 
-		// schema are resource level (interacting with resources)
+	// schema at provider level,
+	// schema are resource level (interacting with resources)
 	return p
 }
 
@@ -73,4 +68,3 @@ func Provider() *schema.Provider {
 // 	}
 // 	log.Print("validateUUID:end")
 // }
-	
