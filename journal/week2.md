@@ -70,3 +70,7 @@ Use `value := "thing"`
 Terraform Provider resources utilize CRUD (Create, Read, Update, Delete).
 
 https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
+
+## Terraform State
+### Command to see state 
+`tf state list`

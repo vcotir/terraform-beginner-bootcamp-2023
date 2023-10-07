@@ -237,7 +237,7 @@ func resourceHouseRead(ctx context.Context, d *schema.ResourceData, m interface{
 		d.Set("description", responseData["description"].(string))
 		d.Set("domain_name", responseData["domain_name"].(string))
 		d.Set("content_version", responseData["content_version"].(float64))
-	} else if resp.StatusCode != http.StatusNotFound {
+	} else if resp.StatusCode == http.StatusNotFound {
 		// If doing Read and state isn't on user state file
 		d.SetId("")
 	} else if resp.StatusCode != http.StatusOK {
@@ -287,10 +287,17 @@ func resourceHouseUpdate(ctx context.Context, d *schema.ResourceData, m interfac
 		return diag.FromErr(err)
 	}
 	defer resp.Body.Close()
+
+	// parse response json
+	var responseData map[string]interface{}
+
+	if err := json.NewDecoder(resp.Body).Decode(&responseData); err != nil {
+		return diag.FromErr(err)
+	}
 	
 	// Handle response status
 	if resp.StatusCode != http.StatusOK {
-		return diag.FromErr(fmt.Errorf("failed to update home resource, status code: %d, status: %s", resp.StatusCode, resp.Status))
+		return diag.FromErr(fmt.Errorf("failed to create home resource, status code: %d, status: %s, body: %s", resp.StatusCode, resp.Status, responseData))
 	}
 
 	d.Set("name", payload["name"])
