@@ -36,18 +36,16 @@ module "home_devops_dungeon_hosting" {
 }
 
 resource "terratowns_home" "home_devops_dungeon" {
-  name = "AI Ramblings and Musings"
+  name = "Demon Slayer is The BEST!"
   description = <<DESCRIPTION
-In our fast-paced world, Artificial Intelligence (AI) emerges as a beacon of hope, promising solutions that save time and empower individuals to regain control over their lives. AI's ability to process vast data, learn, and adapt empowers us in extraordinary ways.
+Are you a fan of Demon Slayer: Kimetsu no Yaiba, the epic manga and anime series that follows the adventures of Tanjiro Kamado and his sister Nezuko as they fight against the demons that threaten humanity? Do you want to learn more about the characters, the story, and the world of Demon Slayer? Do you want to share your thoughts, opinions, and fan art with other fans of the series?
 
-Imagine AI-driven healthcare diagnostics that swiftly detect diseases, potentially saving lives and reducing stress. Picture AI-driven personal assistants that efficiently manage tasks, allowing us to focus on what truly matters. With AI in education, tailored learning experiences put the reins of knowledge back in our hands.
+If you answered yes to any of these questions, then you should visit my Demon Slayer anime fan page! It’s a place where you can find all kinds of information, news, trivia, and fun content related to Demon Slayer. You can also interact with other fans, join discussions, participate in polls, and show your support for your favorite characters and scenes. It’s a community of passionate and friendly people who love Demon Slayer as much as you do!
 
-In industries, AI-driven automation enhances efficiency, reducing workloads and granting professionals more time for creativity and strategic pursuits. In transportation, AI optimizes routes, reducing congestion and giving us precious moments for leisure or productivity.
-
-By entrusting repetitive tasks to AI, we reclaim invaluable time and mental space. AI's predictive capabilities help us make informed decisions and anticipate challenges. Embracing AI means taking back control of our lives, where we have more time to dream, create, and savor the moments that truly matter.
+So what are you waiting for? Come and join my Demon Slayer anime fan page today! You won’t regret it!
 DESCRIPTION
   domain_name = module.home_devops_dungeon_hosting.domain_name
-  town = "gamers-grotto"
+  town = "video-valley"
   content_version = var.devops_dungeon.content_version
 }
 
